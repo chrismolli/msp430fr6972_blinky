@@ -55,6 +55,12 @@ fn main() -> ! {
     */
     p9.p9out.modify( |_,w| {unsafe {w.bits(0x40)}} );
 
+    /*
+        Clear PMM Lock
+    */
+    let pm5 = p.PMM;
+    pm5.pm5ctl0.modify(|_,w| {unsafe {w.bits(0x00)}});
+
     loop {
         /*
             Toggle Debug LED
